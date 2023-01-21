@@ -8,22 +8,28 @@
     <title>Challange Week 4</title>
 </head>
 <body>
+<div class="title"> < Rock Paper Scissor </div>
 <div class="container">
-  <!-- <h2 style="font-size: 100px;"> Player <span id="p-score">0</span> - <span id="c-score"> 0 </span></h2> -->
-    <div class="title"> < Rock Paper Scissor </div>
-      <div>PLAYER 1</div>  
-      <div>COM</div>     
-    <div class="action">
-      <input class="options" type="image" src="./assets/batu.png" value="Rock"></img>
-      <img src="./assets/batu.png" class="komputer" ></img>
-      <input class="options" type="image" src="./assets/gunting.png" value="Scissors"></img>
-      <img src="./assets/gunting.png" class="komputer"></img>
-      <input class="options" type="image" src="./assets/kertas.png" value="Paper"></img> 
-      <img src="./assets/kertas.png" class="komputer"></img>
+      <div class="action">
+        <div class="isi">
+          <p style="font-size: 3em; font-weight: bold;">PLAYER 1</p>
+          <input class="options" type="image" src="./assets/batu.png" value="Rock"></input>
+          <input class="options" type="image" src="./assets/kertas.png" value="Paper"></input> 
+          <input class="options" type="image" src="./assets/gunting.png" value="Scissors"></input>
+        </div>
+        <div class="isi">
+          <h1 class="midText" id="versus">VS</h1>
+          <input class="refresh" type="image" src="./assets/refresh.png"  style="margin-top: 12em;" onclick="window.location.reload()"></input>
+        </div>
+        <div class="isi">
+          <p style="font-size: 3em; font-weight: bold;">COM</p>
+          <input class="komputer" type="image" src="./assets/batu.png"  id="satu" value="Rock"></input>
+          <input class="komputer" type="image" src="./assets/kertas.png"  id="dua" value="Paper"></input>
+          <input class="komputer" type="image" src="./assets/gunting.png"  id="tiga" value="Scissors"></input>
+        </div>
+      </div>
     </div>
-    <img src="./assets/refresh.png" class="refresh" style="justify-self: center; margin-left: 70px;"></img>
-  </div>
-</div>     
+</div>
 </body>
 <script src="GBK.js">
 </script>

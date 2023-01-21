@@ -1,74 +1,81 @@
-const options = document.querySelectorAll(".options");
-	  let pScore = 0;
-	  let cScore = 0;
-  
+class GameSuit {
+
+constructor(pInput){
+	this.pInput = pInput;
+  }
+}
+	const options = document.querySelectorAll(".options");
+	const tulisan = document.getElementById("versus");
+	const comp = document.querySelectorAll(".komputer");
+	const ichi = document.getElementById("satu")
+	const ni = document.getElementById("dua")
+	const san = document.getElementById("tiga")
+
+
 	  options.forEach((option) => {
-		option.addEventListener("click", function () {
-		  const pInput = this.value;
-  
-		  const cOptions = ["Rock", "Paper", "Scissors"];
-		  const cInput = cOptions[Math.floor(Math.random() * 3)];
-		  
-		  compareInputs(pInput, cInput);
-		  updateScore();
-		  if(checkWinner()){
-			pScore = cScore= 0;
-			updateScore();
-		  }
+		  option.addEventListener("click", function() {
+        const pInput = this.value;
+        const cOptions = [ichi, ni, san];
+        const cInput = cOptions[Math.floor(Math.random() * 3)].value;
+        option.classList.add("choiceBorder")
+        tulisan.classList.remove("midText");
+        compareInputs(pInput, cInput);
+        backGroundComputer(cInput);
+        options.forEach(elem=> {
+        elem.disabled = true;
+       	});       
 		});
-	  });  
-  
+	  });   
+
+	  function backGroundComputer (cInput) {
+		if (cInput === "Rock") {
+			ichi.classList.add("choiceBorder");
+			return;
+		}
+		if (cInput === "Scissors") {
+			san.classList.add("choiceBorder");
+			return;
+		} 
+		if (cInput === "Paper") {
+			ni.classList.add("choiceBorder");
+			return;
+		}
+	}
+
 	  function compareInputs(pInput, cInput) {
-		const currentMatch = `${pInput} vs ${cInput}`;
 		if (pInput === cInput) {
-		  alert(`${currentMatch} is a Tie`);
-		  return;
+			tulisan.innerHTML = `DRAW`;
+      tulisan.classList.add("draw");
+    	return;
 		}
   
 		if (pInput === "Rock") {
 		  if (cInput === "Scissors") {
-			alert(`${currentMatch} = You Win`);
-			pScore++;
+      tulisan.innerHTML = `PLAYER 1 <br> WIN`;
+      tulisan.classList.add("playerWin");
 		  } else {
-			alert(`${currentMatch} = Computer Wins`);
-			cScore++;
+      tulisan.innerHTML = `C O M <br> W I N`;
+      tulisan.classList.add("comWin");	
 		  }
 		}
 		//Check for Paper
 		else if (pInput === "Paper") {
 		  if (cInput === "Rock") {
-			alert(`${currentMatch} = You Win`);
-			pScore++;
+		tulisan.innerHTML = `PLAYER 1 <br> WIN`;
+    tulisan.classList.add("playerWin");
 		  } else {
-			alert(`${currentMatch} = Computer Wins`);
-			cScore++;
+		tulisan.innerHTML = `C O M <br> W I N`;	
+    tulisan.classList.add("comWin");
 		  }
 		}
 		//Check for Scissors
 		else {
 		  if (cInput === "Paper") {
-			alert(`${currentMatch} = You Win`);
-			pScore++;
+		tulisan.innerHTML = `PLAYER 1 <br> WIN`;
+    tulisan.classList.add("playerWin");
 		  } else {
-			alert(`${currentMatch} = Computer Wins`);
-			cScore++;
+		tulisan.innerHTML = `C O M <br> W I N`;	
+    tulisan.classList.add("comWin");
 		  }
 		}
-	  }
-  
-	  function updateScore() {
-		document.getElementById("p-score").textContent = pScore;
-		document.getElementById("c-score").textContent = cScore;
-	  }
-  
-	  function checkWinner() {
-		if (pScore === 5 || cScore === 5) {
-		  const winner =
-			pScore === 5
-			  ? "You win the game! Congratulations!"
-			  : "Computer wins the game! Try again next time!";
-		  alert(winner);
-		  return true;
-		}
-		return false;
-	  }
+    }
